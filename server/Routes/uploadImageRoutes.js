@@ -1,5 +1,4 @@
 const express = require('express')
-const multer = require('multer') 
 const path = require('path')
 const router = express.Router()
 
@@ -7,10 +6,8 @@ const { uploadProfileImage, uploadProductImage } = require('../Controllers/uploa
 
 const Auth = require('../Middlewares/Auth')
 
-const upload = multer({ dest: 'temp/' }); // Temporarily store file
-
 // Route for user registration
-router.post('/profile_picture', upload.single('image'), Auth, uploadProfileImage)
-router.post('/product_image', upload.single('image'), Auth, uploadProductImage)
+router.post('/profile_picture', Auth, uploadProfileImage)
+router.post('/product_image', Auth, uploadProductImage)
 
 module.exports = router
