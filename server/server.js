@@ -31,6 +31,7 @@ app.use(cookieParser());
 
 app.set('view engine', 'ejs');
 
+app.get('/', (req, res) => res.send('Welcome to Exclusive Server'));
 app.use('/api/auth', authRoutes);
 app.use('/api/user', userRoutes);
 app.use('/api/product', productRoutes);
