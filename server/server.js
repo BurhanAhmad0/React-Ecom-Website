@@ -18,7 +18,7 @@ const uploadRoutes = require('./Routes/uploadImageRoutes')
 
 ConnectDB();
 
-app.use(express.static('public'));
+// app.use(express.static('public'));
 // app.use(cors({
 //     origin: 'http://localhost:5173',
 //     methods: ['GET', 'POST', 'PUT', 'DELETE'],
