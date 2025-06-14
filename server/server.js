@@ -39,6 +39,4 @@ app.use('/api/cart', carRoutes);
 app.use('/api/order', orderRoutes);
 app.use('/api/upload', uploadRoutes);
 
-app.listen(port, () => {
-    console.log(`Example app listening on http://127.0.0.1:${port}`);
-});
+module.exports = app;
