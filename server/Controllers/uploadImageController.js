@@ -1,67 +1,105 @@
-const cloudinary = require('../Configs/CloudinaryConfig')
-const jwt = require('jsonwebtoken')
+const cloudinary = require('../Configs/CloudinaryConfig');
+const jwt = require('jsonwebtoken');
 
-const ProductModel = require('../Models/ProductModel')
+const ProductModel = require('../Models/ProductModel');
 const UserModel = require('../Models/UserModel');
 
+// Upload profile image
 const uploadProfileImage = async (req, res) => {
     try {
-        const result = await cloudinary.uploader.upload(req.file.path);
+        // Check if file exists
+        if (!req.file) {
+            return res.status(400).json({ error: 'No file uploaded' });
+        }
+
+        // Upload image from buffer
+        const streamUpload = (buffer) => {
+            return new Promise((resolve, reject) => {
+                const stream = cloudinary.uploader.upload_stream(
+                    { resource_type: 'image' },
+                    (error, result) => {
+                        if (error) reject(error);
+                        else resolve(result);
+                    }
+                );
+                stream.end(buffer);
+            });
+        };
+
+        const result = await streamUpload(req.file.buffer);
 
         // Find the user
-        const user = await UserModel.findById(req.user.userId);
+        const user = await UserModel.findById(req.user?.userId);
         if (!user) {
             return res.status(404).json({ error: 'User not found' });
         }
 
-        // Save image URL to user's profile
+        // Update profile image
         user.profile_image = result.secure_url;
         await user.save();
 
+        // Create token (limit sensitive data)
         const SESSION_TOKEN = jwt.sign(
-            { userId: user._id, profile_image: user.profile_image, email: user.email, name: user.name, user_role: user.user_role, createdAt: user.createdAt },
+            {
+                userId: user._id,
+                role: user.user_role,
+            },
             process.env.JWT_SECRET,
             { expiresIn: '7d' }
         );
 
-        res.cookie('SESSION_TOKEN', SESSION_TOKEN, {
-            httpOnly: true,
-            secure: process.env.NODE_ENV === 'production',
-            sameSite: 'strict',
-            maxAge: 7 * 24 * 60 * 60 * 1000
-        });
+        // Set cookie (for serverless environment use setHeader)
+        res.setHeader('Set-Cookie', `SESSION_TOKEN=${SESSION_TOKEN}; HttpOnly; Path=/; Max-Age=${7 * 24 * 60 * 60}; ${process.env.NODE_ENV === 'production' ? 'Secure; SameSite=Strict' : ''}`);
 
-        res.json({
-            message: 'Image uploaded successfully'
-        });
+        res.json({ message: 'Image uploaded successfully' });
     } catch (err) {
-        res.status(500).json({ error: err.message });
+        console.error(err);
+        res.status(500).json({ error: 'Something went wrong. Please try again later.' });
     }
-}
+};
 
+// Upload product image
 const uploadProductImage = async (req, res) => {
     try {
-        const result = await cloudinary.uploader.upload(req.file.path);
+        if (!req.file) {
+            return res.status(400).json({ error: 'No file uploaded' });
+        }
 
-        // Find the user
+        if (!req.body.productId) {
+            return res.status(400).json({ error: 'Product ID is required' });
+        }
+
+        const streamUpload = (buffer) => {
+            return new Promise((resolve, reject) => {
+                const stream = cloudinary.uploader.upload_stream(
+                    { resource_type: 'image' },
+                    (error, result) => {
+                        if (error) reject(error);
+                        else resolve(result);
+                    }
+                );
+                stream.end(buffer);
+            });
+        };
+
+        const result = await streamUpload(req.file.buffer);
+
         const product = await ProductModel.findById(req.body.productId);
         if (!product) {
             return res.status(404).json({ error: 'Product not found' });
         }
 
-        // Save image URL to user's profile
         product.product_image = result.secure_url;
         await product.save();
 
-        res.json({
-            message: 'Image uploaded successfully'
-        });
+        res.json({ message: 'Product image uploaded successfully' });
     } catch (err) {
-        res.status(500).json({ error: err.message });
+        console.error(err);
+        res.status(500).json({ error: 'Something went wrong. Please try again later.' });
     }
-}
+};
 
 module.exports = {
     uploadProfileImage,
     uploadProductImage
-}
+};
