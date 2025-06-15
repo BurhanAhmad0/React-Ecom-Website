@@ -31,7 +31,7 @@ const Profile = () => {
             user_role: data.role,
         }));
         try {
-            const res = await axios.put(`http://localhost:3000/api/user/${user.userId}`, data, {
+            const res = await axios.put(`${import.meta.env.VITE_API_BASE}/user/${user.userId}`, data, {
                 withCredentials: true,
                 headers: {
                     'Content-Type': 'application/json',
@@ -59,7 +59,7 @@ const Profile = () => {
             formData.append('image', file); // 'image' should match backend field name
 
             const response = await axios.post(
-                'http://localhost:3000/api/upload/profile_picture',
+                `${import.meta.env.VITE_API_BASE}/upload/profile_picture`,
                 formData,
                 {
                     withCredentials: true,
@@ -77,7 +77,7 @@ const Profile = () => {
 
     const handleDelete = async () => {
         try {
-            const res = await axios.delete(`http://localhost:3000/api/user/${user.userId}`, {
+            const res = await axios.delete(`${import.meta.env.VITE_API_BASE}/user/${user.userId}`, {
                 withCredentials: true, // if you use cookies/session
             });
 

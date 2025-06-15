@@ -9,7 +9,7 @@ const Orders = () => {
   useEffect(() => {
     const fetchOrders = async () => {
 
-      const response = await axios.get('http://localhost:3000/api/order', {
+      const response = await axios.get(`${import.meta.env.VITE_API_BASE}/order`, {
         withCredentials: true
       });
 

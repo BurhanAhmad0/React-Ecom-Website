@@ -21,7 +21,7 @@ export const AuthProvider = ({ children }) => {
     useEffect(() => {
         const fetchUser = async () => {
             try {
-                const res = await axios.get('http://localhost:3000/api/user', {
+                const res = await axios.get(`${import.meta.env.VITE_API_BASE}/user`, {
                     withCredentials: true
                 });
                 setUser(res.data.user);
@@ -37,7 +37,7 @@ export const AuthProvider = ({ children }) => {
     const handleLogout = async () => {
         try {
             const response = await axios.post(
-                'http://localhost:3000/api/auth/logout',
+                `${import.meta.env.VITE_API_BASE}/auth/logout`,
                 {}, // POST body is empty
                 {
                     withCredentials: true // This should be in the config object

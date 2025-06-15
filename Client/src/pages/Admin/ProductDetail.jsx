@@ -21,7 +21,7 @@ const AdminProductDetail = () => {
     useEffect(() => {
         const fetchProduct = async () => {
             try {
-                const res = await axios.get(`http://localhost:3000/api/product/${id}`, {
+                const res = await axios.get(`${import.meta.env.VITE_API_BASE}/product/${id}`, {
                     withCredentials: true
                 })
                 setProduct(res.data.product)
@@ -36,7 +36,7 @@ const AdminProductDetail = () => {
 
     const handleUpdateProduct = async (data) => {
         try {
-            const response = await axios.put(`http://localhost:3000/api/product/${product._id}`, data, {
+            const response = await axios.put(`${import.meta.env.VITE_API_BASE}/product/${product._id}`, data, {
                 withCredentials: true,
             });
 
@@ -54,7 +54,7 @@ const AdminProductDetail = () => {
 
     const handleDeleteProduct = async (id) => {
         try {
-            const response = await axios.delete(`http://localhost:3000/api/product/${id}`, {
+            const response = await axios.delete(`${import.meta.env.VITE_API_BASE}/product/${id}`, {
                 withCredentials: true,
             });
 

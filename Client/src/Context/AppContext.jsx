@@ -69,7 +69,7 @@ export const AppProvider = ({ children }) => {
             // Note: The backend API /api/cart/:productId might need to handle
             // both adding a new item and incrementing quantity based on its logic.
             // The 'data' payload might need to reflect this.
-            const response = await axios.post(`http://localhost:3000/api/cart/${productId}`, data, {
+            const response = await axios.post(`${import.meta.env.VITE_API_BASE}/cart/${productId}`, data, {
                 headers: { 'Content-Type': 'application/json' },
                 withCredentials: true,
             });
@@ -131,7 +131,7 @@ export const AppProvider = ({ children }) => {
                 "quantity": quantity
             };
 
-            const response = await axios.put(`http://localhost:3000/api/cart/${productId}`, data, {
+            const response = await axios.put(`${import.meta.env.VITE_API_BASE}/cart/${productId}`, data, {
                 headers: { 'Content-Type': 'application/json' },
                 withCredentials: true,
             });
@@ -169,7 +169,7 @@ export const AppProvider = ({ children }) => {
                 "userId": user.userId, // Send userId in the body, as per your backend route
             };
 
-            const response = await axios.delete(`http://localhost:3000/api/cart/${productId}`, {
+            const response = await axios.delete(`${import.meta.env.VITE_API_BASE}/cart/${productId}`, {
                 data: data, // For DELETE requests, body is passed in the 'data' property of config
                 headers: { 'Content-Type': 'application/json' },
                 withCredentials: true,
@@ -191,7 +191,7 @@ export const AppProvider = ({ children }) => {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const res = await axios.get('http://localhost:3000/api/product', {
+                const res = await axios.get(`${import.meta.env.VITE_API_BASE}/product`, {
                     withCredentials: true
                 });
                 setProducts(res.data.products);
@@ -208,7 +208,7 @@ export const AppProvider = ({ children }) => {
     useEffect(() => {
         const fetchCartProducts = async () => {
             try {
-                const res = await axios.get('http://localhost:3000/api/cart', {
+                const res = await axios.get(`${import.meta.env.VITE_API_BASE}/cart`, {
                     withCredentials: true
                 });
                 setCart(res.data.cartProducts);

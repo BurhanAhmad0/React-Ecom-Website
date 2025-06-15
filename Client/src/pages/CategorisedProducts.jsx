@@ -13,7 +13,7 @@ const CategorisedProducts = () => {
     useEffect(() => {
         const fetchCategorisedProducts = async () => {
             try {
-                const res = await axios.get(`http://localhost:3000/api/product/category/${category}`, {
+                const res = await axios.get(`${import.meta.env.VITE_API_BASE}/product/category/${category}`, {
                     withCredentials: true
                 });
                 setCategorisedProducts(res.data.products);

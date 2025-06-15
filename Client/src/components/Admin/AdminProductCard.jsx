@@ -18,7 +18,7 @@ const AdminProductCard = ({ product }) => {
 
     const handleUpdateProduct = async (data) => {
         try {
-            const response = await axios.put(`http://localhost:3000/api/product/${product._id}`, data, {
+            const response = await axios.put(`${import.meta.env.VITE_API_BASE}/product/${product._id}`, data, {
                 withCredentials: true,
             });
 
@@ -36,7 +36,7 @@ const AdminProductCard = ({ product }) => {
 
     const handleDeleteProduct = async (id) => {
         try {
-            const response = await axios.delete(`http://localhost:3000/api/product/${id}`, {
+            const response = await axios.delete(`${import.meta.env.VITE_API_BASE}/product/${id}`, {
                 withCredentials: true,
             });
 
@@ -59,7 +59,7 @@ const AdminProductCard = ({ product }) => {
             formData.append('productId', product._id);
 
             const response = await axios.post(
-                'http://localhost:3000/api/upload/product_image',
+                `${import.meta.env.VITE_API_BASE}/upload/product_image`,
                 formData,
                 {
                     withCredentials: true,
