@@ -24,8 +24,6 @@ app.use(express.json()); // for parsing application/json
 app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 app.use(cookieParser());
 
-app.set('view engine', 'ejs');
-
 app.get('/', (req, res) => res.send('Welcome to Exclusive Server'));
 app.use('/api/auth', authRoutes);
 app.use('/api/user', userRoutes);
