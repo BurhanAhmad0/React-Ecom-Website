@@ -18,7 +18,10 @@ const uploadRoutes = require('./Routes/uploadImageRoutes')
 ConnectDB();
 
 // app.use(express.static('public'));
-app.use(cors());
+app.use(cors({
+  origin: process.env.FRONTEND_URI,
+  credentials: true
+}));
 
 app.use(express.json()); // for parsing application/json
 app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
