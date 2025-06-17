@@ -14,25 +14,25 @@ const TrustedBrandsSection = () => {
                     <div className="flex flex-wrap justify-center items-center gap-8 sm:gap-12">
                         <img
                             loading='lazy'
-                            src="/src/assets/icons/bravo.png"
+                            src="/assets/bravo.png"
                             alt="Brand 1"
                             className="h-10 sm:h-36 w-auto object-contain"
                         />
                         <img
                             loading='lazy'
-                            src="/src/assets/icons/envato.png"
+                            src="/assets/envato.png"
                             alt="Brand 2"
                             className="h-10 sm:h-36 w-auto object-contain"
                         />
                         <img
                             loading='lazy'
-                            src="/src/assets/icons/habbo.png"
+                            src="/assets/habbo.png"
                             alt="Brand 3"
                             className="h-10 sm:h-36 w-auto object-contain"
                         />
                         <img
                             loading='lazy'
-                            src="/src/assets/icons/wix.png"
+                            src="/assets/wix.png"
                             alt="Brand 4"
                             className="h-10 sm:h-20 w-auto object-contain"
                         />
