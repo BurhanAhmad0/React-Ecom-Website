@@ -17,7 +17,7 @@ const uploadRoutes = require('./Routes/uploadImageRoutes')
 
 ConnectDB();
 
-// app.use(express.static('public'));
+app.use(express.static('public'));
 app.use(cors({
   origin: process.env.FRONTEND_URI,
   credentials: true
