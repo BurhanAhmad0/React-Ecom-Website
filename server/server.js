@@ -27,7 +27,16 @@ app.use(express.json()); // for parsing application/json
 app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 app.use(cookieParser());
 
-app.get('/', (req, res) => res.send('Welcome to Exclusive Server'));
+app.get('/', (req, res) => {
+  res.cookie('test_cookie', 'hello', {
+    httpOnly: true,
+    secure: true,
+    sameSite: 'none'
+  });
+  res.send('Test Cookie Sent');
+});
+
+// app.get('/', (req, res) => res.send('Welcome to Exclusive Server'));
 app.use('/api/auth', authRoutes);
 app.use('/api/user', userRoutes);
 app.use('/api/product', productRoutes);
