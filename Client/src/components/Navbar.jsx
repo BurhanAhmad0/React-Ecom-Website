@@ -31,13 +31,13 @@ const Navbar = ({ bgColor }) => {
                             <div className="flex items-center space-x-4 text-white drop-shadow-md relative">
                                 {/* Cart Icon */}
                                 <Link to="/cart" className="relative flex items-center justify-center w-9 h-9">
-                                    <img loading='lazy' src="https://res.cloudinary.com/dqu9qfaol/image/upload/v1750328513/userSvg_t9drdu.svg" alt="Cart" className="w-8 h-8" />
+                                    <img loading='lazy' src="https://res.cloudinary.com/dqu9qfaol/image/upload/v1750328544/cartSvg_ok6hnu.svg " alt="Cart" className="w-8 h-8" />
                                     {!(totalCartItems === 0) && <span className="absolute -top-1.5 -right-1.5 bg-red-600 text-white text-xs rounded-full px-1">{totalCartItems}</span>}
                                 </Link>
 
                                 {/* User Icon & Dropdown */}
                                 <div className="relative group flex items-center justify-center w-9 h-9">
-                                    <img loading='lazy' onClick={() => setIsMenuOpen(!isMenuOpen)} src="https://res.cloudinary.com/dqu9qfaol/image/upload/v1750328544/cartSvg_ok6hnu.svg" alt="User" className="w-8 h-8 cursor-pointer" />
+                                    <img loading='lazy' onClick={() => setIsMenuOpen(!isMenuOpen)} src="https://res.cloudinary.com/dqu9qfaol/image/upload/v1750328513/userSvg_t9drdu.svg" alt="User" className="w-8 h-8 cursor-pointer" />
 
                                     <div className={`absolute right-0 top-10 mt-2 w-48 text-black bg-white rounded-md shadow-lg z-20 ${isMenuOpen ? 'block' : 'hidden'}`}>
                                         <Link to={`/profile/${user.name.split(' ')[0]}`} className="block px-4 py-2 hover:bg-gray-100">Profile</Link>
