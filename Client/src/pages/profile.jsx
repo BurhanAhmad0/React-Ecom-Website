@@ -135,7 +135,7 @@ const Profile = () => {
                             <div onMouseEnter={() => setUplaodImageHover(true)} onMouseLeave={() => setUplaodImageHover(false)} className="relative w-32 h-32 rounded-full bg-blue-200 overflow-hidden p-7">
                                 <img
                                     loading='lazy'
-                                    src="/src/assets/icons/userSvg.svg"
+                                    src="https://res.cloudinary.com/dqu9qfaol/image/upload/v1750328513/userSvg_t9drdu.svg"
                                     alt="Profile"
                                     className="object-cover w-full h-full"
                                 />
@@ -143,7 +143,7 @@ const Profile = () => {
                                 <div className={`overlay cursor-pointer w-full h-full rounded-full bg-black/25 absolute top-0 left-0 z-10 ${UplaodImageHover ? 'flex' : 'hidden'} items-center justify-center`}>
                                     <img onClick={() => {
                                         document.getElementById('profile_picture').click(); // open file dialog
-                                    }} className='w-12 h-12 opacity-70' src="/src/assets/icons/camera.svg" alt="" />
+                                    }} className='w-12 h-12 opacity-70' src="https://res.cloudinary.com/dqu9qfaol/image/upload/v1750331436/camera_limsl1.svg" alt="" />
                                 </div>
 
                                 {/* Hidden file input */}
