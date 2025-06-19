@@ -52,7 +52,7 @@ const UpdateUser = async (req, res) => {
         }
 
         const SESSION_TOKEN = jwt.sign(
-            { userId: updatedUser._id, email: updatedUser.email, name: updatedUser.name, user_role: updatedUser.user_role, createdAt: updatedUser.createdAt },
+            { userId: updatedUser._id, profile_image: updatedUser.profile_image, email: updatedUser.email, name: updatedUser.name, user_role: updatedUser.user_role, createdAt: updatedUser.createdAt },
             process.env.JWT_SECRET,
             { expiresIn: '7d' }
         );
