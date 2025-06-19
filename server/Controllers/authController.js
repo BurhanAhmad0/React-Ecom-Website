@@ -108,8 +108,8 @@ LogoutUser = (req, res) => {
 
         res.clearCookie('SESSION_TOKEN', {
             httpOnly: true,
-            secure: process.env.NODE_ENV === 'production',
-            sameSite: 'strict'
+            secure: true,
+            sameSite: 'none'
         });
 
         res.status(201).json({ message: 'User logged out successfully' });
