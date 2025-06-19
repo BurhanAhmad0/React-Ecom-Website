@@ -24,10 +24,10 @@ const Navbar = ({ bgColor }) => {
                         <>
                             {/* Admin Tools (optional links or icons) */}
                             <Link to="/admin/products" className="text-white hover:text-blue-200">
-                                <img loading='lazy' className="w-8 h-8 cursor-pointer" src="/src/assets/icons/productSvg.svg" alt="" />
+                                <img loading='lazy' className="w-8 h-8 cursor-pointer" src="https://res.cloudinary.com/dqu9qfaol/image/upload/v1750331869/productSvg_ney5jh.svg" alt="" />
                             </Link>
                             <Link to="/admin/orders" className="text-white hover:text-blue-200">
-                                <img loading='lazy' className="w-8 h-8 cursor-pointer" src="/src/assets/icons/orderSvg.svg" alt="" />
+                                <img loading='lazy' className="w-8 h-8 cursor-pointer" src="https://res.cloudinary.com/dqu9qfaol/image/upload/v1750331878/orderSvg_m0ks2x.svg" alt="" />
                             </Link>
 
                             {/* User Avatar with Dropdown */}
@@ -35,7 +35,7 @@ const Navbar = ({ bgColor }) => {
                                 <img 
                                     loading='lazy'
                                     onClick={() => setIsMenuOpen(!isMenuOpen)}
-                                    src="/src/assets/icons/userSvg.svg"
+                                    src="https://res.cloudinary.com/dqu9qfaol/image/upload/v1750328513/userSvg_t9drdu.svg"
                                     alt="Admin"
                                     className="w-8 h-8 cursor-pointer"
                                 />
