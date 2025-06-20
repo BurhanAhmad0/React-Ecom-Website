@@ -20,7 +20,8 @@ ConnectDB();
 // app.use(express.static('public'));
 app.use(cors({
   origin: process.env.FRONTEND_URI,
-  credentials: true
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed HTTP methods
 }));
 
 app.use(express.json()); // for parsing application/json
