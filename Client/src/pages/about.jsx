@@ -1,4 +1,6 @@
-import React from 'react';
+import React from "react";
+
+import bgImage from "../assets/img/bgImg.webp";
 
 const About = () => {
   return (
@@ -7,7 +9,7 @@ const About = () => {
         {/* Image Section */}
         <div className="w-full h-80 md:h-full">
           <img
-            src="/assets/bgImg.webp"
+            src={bgImage}
             alt="About Us"
             className="w-full h-full object-cover rounded-xl shadow-md"
           />
@@ -15,12 +17,20 @@ const About = () => {
 
         {/* Text Section */}
         <div>
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-800 mb-4">About Us</h2>
+          <h2 className="text-3xl sm:text-4xl font-bold text-gray-800 mb-4">
+            About Us
+          </h2>
           <p className="text-gray-600 text-base sm:text-lg leading-relaxed mb-6">
-            Welcome to our platform! We are passionate about delivering high-quality digital products and services that enhance your experience. Whether you're here to shop, explore, or learn more about what we offer — our goal is to make it seamless, responsive, and visually appealing.
+            Welcome to our platform! We are passionate about delivering
+            high-quality digital products and services that enhance your
+            experience. Whether you're here to shop, explore, or learn more
+            about what we offer — our goal is to make it seamless, responsive,
+            and visually appealing.
           </p>
           <p className="text-gray-600 text-base sm:text-lg leading-relaxed">
-            Our team is dedicated to innovation and user satisfaction. We believe in clean design, fast performance, and continuous improvement.
+            Our team is dedicated to innovation and user satisfaction. We
+            believe in clean design, fast performance, and continuous
+            improvement.
           </p>
         </div>
       </div>

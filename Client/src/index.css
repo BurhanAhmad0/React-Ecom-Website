@@ -2,21 +2,28 @@
 
 /* src/assets/fonts/fonts.css */
 @font-face {
-    font-family: 'Poppins';
-    src: url('./assets/fonts/Poppins/Poppins-Regular.ttf') format('truetype');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
+  font-family: "Poppins";
+  src: url("./assets/fonts/Poppins/Poppins-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
-    font-family: 'Poppins';
-    src: url('./assets/fonts/Poppins/Poppins-Bold.ttf') format('truetype');
-    font-weight: 900;
-    font-style: normal;
-    font-display: swap;
+  font-family: "Poppins";
+  src: url("./assets/fonts/Poppins/Poppins-Bold.ttf") format("truetype");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
 }
 
 @theme {
-    --font-poppins: "Poppins", "sans-serif";
+  --font-poppins: "Poppins", "sans-serif";
+}
+
+.bgImage {
+  background-image: url("./assets/img/bgImg.webp");
+  background-position: bottom right;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
