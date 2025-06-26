@@ -5,7 +5,9 @@ const projectId = process.env.PROJECT_ID;
 const chatbot = async (req, res) => {
   const { message, sessionId = "default-session" } = req.body;
 
-  const sessionClient = new SessionsClient();
+  const sessionClient = new SessionsClient({
+    keyFilename: process.env.GOOGLE_APPLICATION_CREDENTIALS,
+  });
   const sessionPath = sessionClient.sessionPath(projectId, sessionId);
 
   const request = {
