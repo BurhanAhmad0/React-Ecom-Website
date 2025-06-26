@@ -1,9 +1,9 @@
 const express = require("express");
 const Auth = require("../Middlewares/Auth.js");
-const { aiChatbot } = require("../Controllers/openAIControllers.js");
+const { chatbot } = require("../Controllers/dialogflowControllers.js");
 
 const router = express.Router();
 
-router.put("/chat", Auth, aiChatbot);
+router.put("/chat", Auth, chatbot);
 
 module.exports = router;

@@ -6,8 +6,6 @@ const ConnectDB = require("./Configs/ConnectDB.js");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 
-const app = express();
-
 const authRoutes = require("./Routes/authRoutes.js");
 const userRoutes = require("./Routes/userRoutes.js");
 const productRoutes = require("./Routes/productRoutes.js");
@@ -15,11 +13,13 @@ const carRoutes = require("./Routes/cartRoutes.js");
 const orderRoutes = require("./Routes/orderRoutes.js");
 const uploadRoutes = require("./Routes/uploadImageRoutes.js");
 const OpenAIRoutes = require("./Routes/openAIRoutes.js");
+const dialogflowRoutes = require("./Routes/dialogflowRoutes.js");
+
+const app = express();
 
 ConnectDB();
 // const port = 3000;
 
-// app.use(express.static('public'));
 app.use(
   cors({
     origin: process.env.FRONTEND_URI,
@@ -40,6 +40,7 @@ app.use("/api/cart", carRoutes);
 app.use("/api/order", orderRoutes);
 app.use("/api/upload", uploadRoutes);
 app.use("/api/openai", OpenAIRoutes);
+app.use("/api/dialogflow", dialogflowRoutes);
 
 // app.listen(port, () => {
 //   console.log(`Server is running successfully on port ${port}`);

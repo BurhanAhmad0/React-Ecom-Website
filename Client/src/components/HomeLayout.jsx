@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import { Outlet } from "react-router-dom";
 import axios from "axios";
 
-import Navbar from "./Navbar";
-import HeroSection from "./HeroSection";
-import Footer from "./Footer";
+import Navbar from "./Navbar.jsx";
+import HeroSection from "./HeroSection.jsx";
+import Footer from "./Footer.jsx";
 
 import ChatbotIcon from "../assets/icons/chatbot.svg";
+import UserIcon from "../assets/icons/userSvg.svg";
 
 const HomeLayout = () => {
   const [isChatbotOpen, setisChatbotOpen] = useState(false);
@@ -19,24 +20,27 @@ const HomeLayout = () => {
   };
 
   const sendMessageToAI = async () => {
-    if (!userMessage.trim()) return;
+    if (!userMessage) return;
 
-    const newChatLog = [...ChatLog, { role: "user", content: userMessage }];
-    setChatLog(newChatLog);
+    const message = { sender: "user", text: userMessage };
+    setChatLog((prev) => [...prev, message]);
     setuserMessage("");
 
     try {
-      const res = await axios.post(
-        `${import.meta.env.VITE_API_BASE}/openai/chat`,
-        { userMessage }
+      const response = await axios.put(
+        `${import.meta.env.VITE_API_BASE}/dialogflow/chat`,
+        {
+          message: userMessage,
+        },
+        { withCredentials: true }
       );
-      console.log(res);
-      setChatLog([...newChatLog, { role: "bot", content: res.data.reply }]);
-    } catch (err) {
-      console.error(err);
-      setChatLog([
-        ...newChatLog,
-        { role: "bot", content: "Error contacting AI." },
+
+      const botMessage = { sender: "bot", text: response.data.reply };
+      setChatLog((prev) => [...prev, botMessage]);
+    } catch {
+      setChatLog((prev) => [
+        ...prev,
+        { sender: "bot", text: "Sorry, something went wrong." },
       ]);
     }
   };
@@ -58,29 +62,44 @@ const HomeLayout = () => {
         <div
           onClick={() => setisChatbotOpen(!isChatbotOpen)}
           id="chatbox"
-          className="cursor-pointer w-20 h-20 bg-blue-600/75 rounded-full flex items-center justify-center"
+          className="cursor-pointer w-10 lg:w-20 h-10 lg:h-20 bg-blue-600/75 rounded-full flex items-center justify-center"
         >
           <img className="w-1/2" src={ChatbotIcon} alt="" />
         </div>
         {isChatbotOpen && (
-          <div className="chatbox bg-blue-500 text-white rounded-lg p-4 h-96 flex flex-col justify-end">
+          <div className="chatbox bg-blue-500 text-white rounded-lg p-4 w-64 lg:w-80 h-96 flex flex-col justify-end">
             <div className="messages h-full flex flex-col justify-end">
-              <div
-                id="userMessages"
-                className="p-2 bg-blue-300/50 rounded-lg mb-2"
-              >
-                <span className="font-bold text-blue-600">{"USER > "}</span>
-                Hi there!
-              </div>
-              <div
-                id="botMessages"
-                className="p-2 bg-gray-300/50 rounded-lg mb-2"
-              >
-                <span className="font-bold text-blue-900">{"BOT > "}</span>
-                Welcome! How can I help you?
-              </div>
+              {!ChatLog || ChatLog.length === 0 ? (
+                <div
+                  id="userMessages"
+                  className="p-2 mb-2 text-center text-gray-300/70"
+                >
+                  Messages will show up here...
+                </div>
+              ) : (
+                ChatLog.map((entry, index) => (
+                  <div
+                    key={index}
+                    id={
+                      entry.sender === "user" ? "userMessages" : "botMessages"
+                    }
+                    className={`p-2 mb-2 rounded-lg text-wrap flex gap-2 ${
+                      entry.sender === "user"
+                        ? "bg-blue-300/50 text-blue-600"
+                        : "bg-gray-300/50 text-blue-900"
+                    }`}
+                  >
+                    {/* <span className="font-bold">{entry.sender}</span>:{" "} */}
+                    {entry.sender === "user" && (
+                      <img className="w-6" src={UserIcon} alt="" />
+                    )}
+                    {entry.sender === "bot" && <img src={ChatbotIcon} alt="" />}
+                    {entry.text}
+                  </div>
+                ))
+              )}
             </div>
-            <div className="input">
+            <div className="input flex flex-col gap-2 lg:block">
               <input
                 onChange={(e) => handleChange(e)}
                 className="outline-none py-2 border border-white rounded-lg p-2 mr-2"

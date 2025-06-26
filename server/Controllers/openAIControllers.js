@@ -10,7 +10,8 @@ const aiChatbot = async (req, res) => {
 
   try {
     const completion = await openai.chat.completions.create({
-      model: "gpt-4.1",
+      model: "gpt-4o-mini",
+      store: true,
       messages: [
         {
           role: "system",
