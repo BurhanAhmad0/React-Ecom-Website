@@ -1,21 +1,20 @@
-import React from 'react'
-import { Outlet, Navigate } from 'react-router-dom'
-import { useAuth } from '../../Context/AuthContext'
-import PageLoader from '../PageLoader'
+import React from "react";
+import { Outlet, Navigate } from "react-router-dom";
+import { useAuth } from "../../Context/AuthContext.jsx";
+import PageLoader from "../PageLoader.jsx";
 
 const AdminRoutes = () => {
+  const { user, loading } = useAuth();
 
-    const { user, loading } = useAuth()
-
-    return !loading ? (
-        user && user.user_role === "admin" ? (
-            <Outlet />
-        ) : (
-            <Navigate to="/UnauthorizedAccess" replace />
-        )
+  return !loading ? (
+    user && user.user_role === "admin" ? (
+      <Outlet />
     ) : (
-        <PageLoader />
-    );
-}
+      <Navigate to="/UnauthorizedAccess" replace />
+    )
+  ) : (
+    <PageLoader />
+  );
+};
 
-export default AdminRoutes
+export default AdminRoutes;

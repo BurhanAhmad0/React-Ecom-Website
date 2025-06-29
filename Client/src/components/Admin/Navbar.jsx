@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { useAuth } from "../../Context/AuthContext";
+import { useAuth } from "../../Context/AuthContext.jsx";
 import { Toaster } from "react-hot-toast";
 
 import userIcon from "../../assets/icons/userSvg.svg";

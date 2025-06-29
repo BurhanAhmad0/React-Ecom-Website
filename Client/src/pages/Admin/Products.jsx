@@ -1,11 +1,11 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom'
-import { useApp } from '../../Context/AppContext'
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { useApp } from "../../Context/AppContext.jsx";
 
-import AdminProductCard from '../../components/Admin/AdminProductCard'
+import AdminProductCard from "../../components/Admin/AdminProductCard.jsx";
 
 const Products = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const { products, loading } = useApp();
 
   return (
@@ -13,7 +13,7 @@ const Products = () => {
       <div className="flex flex-col sm:flex-row justify-between items-center mb-8">
         <h1 className="text-2xl font-bold mb-4 sm:mb-0">Product Management</h1>
         <button
-          onClick={() => navigate('/admin/addProduct')}
+          onClick={() => navigate("/admin/addProduct")}
           className="bg-blue-600 text-white px-5 py-2 rounded hover:bg-blue-700 transition cursor-pointer"
         >
           + Add Product
@@ -33,9 +33,8 @@ const Products = () => {
           )}
         </div>
       )}
-
     </div>
-  )
-}
+  );
+};
 
-export default Products
+export default Products;

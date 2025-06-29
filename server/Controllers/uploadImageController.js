@@ -1,8 +1,8 @@
-const cloudinary = require("../Configs/CloudinaryConfig");
+const cloudinary = require("../Configs/CloudinaryConfig.js");
 const jwt = require("jsonwebtoken");
 
-const ProductModel = require("../Models/ProductModel");
-const UserModel = require("../Models/UserModel");
+const ProductModel = require("../Models/ProductModel.js");
+const UserModel = require("../Models/UserModel.js");
 
 // Upload profile image
 const uploadProfileImage = async (req, res) => {

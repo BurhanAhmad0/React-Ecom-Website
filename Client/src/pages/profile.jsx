@@ -3,8 +3,8 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-import { useAuth } from "../Context/AuthContext";
-import PageLoader from "../components/PageLoader";
+import { useAuth } from "../Context/AuthContext.jsx";
+import PageLoader from "../components/PageLoader.jsx";
 
 import userIcon from "../assets/icons/userSvg.svg";
 import cameraIcon from "../assets/icons/cameraSvg.svg";

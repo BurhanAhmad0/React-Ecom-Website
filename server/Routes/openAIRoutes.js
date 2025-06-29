@@ -4,6 +4,6 @@ const { aiChatbot } = require("../Controllers/openAIControllers.js");
 
 const router = express.Router();
 
-router.put("/chat", Auth, aiChatbot);
+router.put("/chat", aiChatbot);
 
 module.exports = router;

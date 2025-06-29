@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { useApp } from "../Context/AppContext"; // Ensure this path is correct
+import { useApp } from "../Context/AppContext.jsx"; // Ensure this path is correct
 
 const Cart = () => {
   const navigate = useNavigate();

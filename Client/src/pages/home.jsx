@@ -1,11 +1,11 @@
 import React from "react";
 
-import SaleProductsSection from "../components/SaleProductsSection";
-import FeaturedProductsSection from "../components/FeaturedProductsSection";
-import TrustedBrandsSection from "../components/TrustedBrandsSection";
-import CategoriesSection from "../components/CategoriesSection";
-import TrendingNowSection from "../components/TrendingNowSection";
-import NewsLetterSection from "../components/NewsLetterSection";
+import SaleProductsSection from "../components/SaleProductsSection.jsx";
+import FeaturedProductsSection from "../components/FeaturedProductsSection.jsx";
+import TrustedBrandsSection from "../components/TrustedBrandsSection.jsx";
+import CategoriesSection from "../components/CategoriesSection.jsx";
+import TrendingNowSection from "../components/TrendingNowSection.jsx";
+import NewsLetterSection from "../components/NewsLetterSection.jsx";
 
 const home = () => {
   return (
